@@ -1,0 +1,15 @@
+.logo img{
+    width: 120px;
+	cursor: pointer;
+	transition: all 1s;
+}
+.nav-link:hover {
+    color: #DF2771;
+    font-size: medium;
+}
+
+.nav-item {
+	text-align: center;
+	font-weight: bolder;
+	font-size: larger;
+}

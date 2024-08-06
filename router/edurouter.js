@@ -117,7 +117,6 @@ router.post('/addService', async (req,res)=>{
 router.post('/showService', async (req,res)=>{
     
     try {
-        // 1. Fetch applied jobs for the artist
           const allServices = await services.find();
           res.render('showServices',{ allServices })
         
