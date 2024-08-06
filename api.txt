@@ -1,0 +1,10 @@
+cource card
+    image
+    numbers of cources
+    name
+
+cource card2
+    image
+    videos
+    number of videos
+
