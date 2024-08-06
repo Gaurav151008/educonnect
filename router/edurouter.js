@@ -100,6 +100,14 @@ router.get('/gate', async (req,res)=>{
         console.log(err);
     }
 });
+router.get('/admin', async (req,res)=>{
+    try{
+        res.render('admin',{ title:'EDU Connect' });
+    }
+    catch(err){
+        console.log(err);
+    }
+});
 
 router.post('/addService', async (req,res)=>{
     
