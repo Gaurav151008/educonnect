@@ -1,6 +1,7 @@
 const express = require('express');
 const users = require("../model/user");
 const services = require('../model/services');
+const cources = require('../model/cources');
 
 router = express.Router();
 
@@ -96,7 +97,6 @@ router.get('/gate', async (req,res)=>{
 });
 
 router.post('/addService', async (req,res)=>{
-    const imgpath = req.body.path;
     
     const service = new users({
         serName: req.body.serName,
@@ -114,7 +114,7 @@ router.post('/addService', async (req,res)=>{
     });
 })
 
-router.post('/showService', async (req,res)=>{
+router.get('/showService', async (req,res)=>{
     
     try {
           const allServices = await services.find();
@@ -127,5 +127,38 @@ router.post('/showService', async (req,res)=>{
     
 })
 
+router.post('/addCources', async (req,res)=>{
+    
+    const cource = new users({
+        serName: req.body.serName,
+        cName: req.body.cname,
+        cImg: req.body.imgPath,
+        cvideo: req.body.videopath,
+        vcnt: req.body.vcnt,
+    });
+    
+    cource.save().then(()=>{
+        req.session.message = {
+            type: "success",
+            message: "cource added successfully",
+        };
+        res.redirect("/showCources");
+    }).catch((err)=>{
+        res.json({ message: err.message });
+    });
+})
+
+router.get('/showCources', async (req,res)=>{
+    
+    try {
+          const allCource = await cources.find();
+          res.render('showCources',{ allCource })
+        
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error fetching applied jobs'); // Handle errors gracefully
+    }
+    
+})
 
 module.exports = router;
