@@ -2,7 +2,7 @@ login
 
 signup
 
-cource upload
+cource upload 
 
 service
     service name
@@ -18,7 +18,7 @@ cources
 admin 
     login/signup
     show cources
-    show 
+    
 show cource card
     image
     numbers of cources

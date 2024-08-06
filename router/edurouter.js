@@ -1,4 +1,6 @@
 const express = require('express');
+const users = require("../model/user");
+const services = require('../model/services');
 
 router = express.Router();
 
@@ -10,6 +12,70 @@ router.get('/', async (req,res)=>{
         console.log(err);
     }
 });
+
+router.get("/login",(req,res)=>{
+    res.render("login",{title:"Register here..."});
+    console.log("artist");
+
+});
+
+router.post('/signup', async (req,res)=>{
+    // get details
+    const email = req.body.email;
+    const role = 0;
+    
+
+    const recchk = await users.findOne({ email });
+    if(recchk){
+        return res.status(401).json({message: "Email already exist" });
+    }
+
+    const user = new users({
+        fullname: req.body.fullname,
+        email,
+        password: req.body.password,
+        role,
+    });
+    
+    user.save().then(()=>{
+        req.session.message = {
+            type: "success",
+            message: "user registered successfully",
+        };
+        res.redirect("/login");
+    }).catch((err)=>{
+        res.json({ message: err.message });
+    });
+        
+    
+});
+
+router.post('/login', async (req,res)=>{
+    try{
+        const email = req.body.email;
+        const password = req.body.password;
+        console.log(email,password);
+        const user = await users.findOne({$and: [{ email }, { password }],}); // Replace with your authentication logic
+
+        if (user) {
+            req.session.loggedin = true;
+            req.session.userId = user._id; 
+            if(user.role == 1){
+                req.session.user = "admin";
+                res.redirect('/admin');    
+            }
+            else{
+                req.session.user = "user";
+                res.redirect('/');
+            }
+        }else {
+            res.status(401).send('Invalid username or password');
+        }
+    }
+    catch(error){
+        res.send(error);
+    }
+})
 
 router.get('/computer_courses', async (req,res)=>{
     try{
@@ -28,5 +94,39 @@ router.get('/gate', async (req,res)=>{
         console.log(err);
     }
 });
+
+router.post('/addService', async (req,res)=>{
+    const imgpath = req.body.path;
+    
+    const service = new users({
+        serName: req.body.serName,
+        serImg: req.body.imgPath,
+    });
+    
+    service.save().then(()=>{
+        req.session.message = {
+            type: "success",
+            message: "service added successfully",
+        };
+        res.redirect("/showService");
+    }).catch((err)=>{
+        res.json({ message: err.message });
+    });
+})
+
+router.post('/showService', async (req,res)=>{
+    
+    try {
+        // 1. Fetch applied jobs for the artist
+          const allServices = await services.find();
+          res.render('showServices',{ allServices })
+        
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error fetching applied jobs'); // Handle errors gracefully
+    }
+    
+})
+
 
 module.exports = router;
