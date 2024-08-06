@@ -1,9 +1,30 @@
-cource card
+login
+
+signup
+
+cource upload
+
+service
+    service name
+    image
+
+cources
+    service name
+    name
+    image
+    videos
+    videos count
+
+admin 
+    login/signup
+    show cources
+    show 
+show cource card
     image
     numbers of cources
     name
 
-cource card2
+show cource card2
     image
     videos
     number of videos
