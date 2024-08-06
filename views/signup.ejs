@@ -3,24 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
+    <title>Signup Form</title>
     <link rel="stylesheet" href="/public/css/loginstyle.css">
     <link rel="shortcut icon" type="png" href="../EduConnect/images/icon/favicon.png" />
+
 </head>
 <body>
     <div class="container">
         <h2>Welcome to <span id="educonnect">EduConnect</span></h2>
-        <p>Login to EduConnect</p>
+        <p>Join EduConnect</p>
 
         <form id="signupForm">
+            <div class="input-row">
+                <div class="label-input-container">
+                    <label for="firstname">First name</label>
+                    <input id="firstname" placeholder="First name" type="text">
+                </div>
+                <div class="label-input-container">
+                    <label for="lastname">Last name</label>
+                    <input id="lastname" placeholder="Last name" type="text">
+                </div>
+            </div>
             <div class="label-input-container">
                 <label for="email">Email Address</label>
-                <input id="email" placeholder="projectmayhem@fc.com" type="email">
+                <input id="email" placeholder="Email" type="email">
             </div>
             <div class="label-input-container">
                 <label for="password">Password</label>
                 <input id="password" placeholder="••••••••" type="password">
             </div>
+            <div class="label-input-container">
+                <label for="twitterpassword">Reset password</label>
+                <input id="twitterpassword" placeholder="••••••••" type="password">
+            </div>
+
             <div class="button-container">
                 <button class="animated-button">
                   <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
@@ -28,7 +44,7 @@
                       d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
                     ></path>
                   </svg>
-                  <span class="text">L O G I N</span>
+                  <span class="text">SIGN UP</span>
                   <span class="circle"></span>
                   <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
                     <path
@@ -37,9 +53,7 @@
                   </svg>
                 </button>
               </div>
-            <p class="account">Don't have an account? <a href="./signup" style="color: #ffffff;">Sign-up</a></p>
-
-
+            <p class="account">Already have an account? <a href="./login" style="color: #ffffff;">Login</a></p>
 
             <div class="divider"></div>
 

@@ -18,6 +18,11 @@ router.get("/login",(req,res)=>{
     console.log("artist");
 
 });
+router.get("/signup",(req,res)=>{
+    res.render("signup",{title:"Register here..."});
+    console.log("artist");
+
+});
 
 router.post('/signup', async (req,res)=>{
     // get details
