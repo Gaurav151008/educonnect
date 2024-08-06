@@ -108,6 +108,22 @@ router.get('/admin', async (req,res)=>{
         console.log(err);
     }
 });
+router.get('/addCourse', async (req,res)=>{
+    try{
+        res.render('addCourses',{ title:'EDU Connect' });
+    }
+    catch(err){
+        console.log(err);
+    }
+});
+router.get('/addService', async (req,res)=>{
+    try{
+        res.render('addServices',{ title:'EDU Connect' });
+    }
+    catch(err){
+        console.log(err);
+    }
+});
 
 router.post('/addService', async (req,res)=>{
     
