@@ -7,7 +7,9 @@ router = express.Router();
 
 router.get('/', async (req,res)=>{
     try{
-        res.render('home',{ title:'EDU Connect' });
+        const allServices = await services.find();
+        
+        res.render('home',{ title:'EDU Connect', allServices });
     }
     catch(err){
         console.log(err);
@@ -80,6 +82,7 @@ router.post('/login', async (req,res)=>{
 
 router.get('/computer_courses', async (req,res)=>{
     try{
+
         res.render('computer_courses',{ title:'EDU Connect' });
     }
     catch(err){
