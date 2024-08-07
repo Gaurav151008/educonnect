@@ -41,7 +41,6 @@ p {
 .input-row {
     display: flex;
     gap: 1rem;
-    margin-bottom: 1rem;
 }
 
 .label-input-container {
@@ -352,7 +351,7 @@ input:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* height: vh; Make sure the container takes full height of the viewport */
+    margin-top: 50px;
   }
   
   .custum-file-upload {
@@ -364,11 +363,11 @@ input:focus {
     justify-content: center; /* Center the items vertically */
     gap: 20px;
     cursor: pointer;
-    border: 2px dashed #37FAAE;
+    border: 2px dashed greenyellow;
     background-color: #212121;
     padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0px 48px 35px -48px #37FAAE;
+    box-shadow: 0px 48px 35px -48px greenyellow;
   }
   
   .custum-file-upload .icon {
@@ -379,7 +378,7 @@ input:focus {
   
   .custum-file-upload .icon svg {
     height: 80px;
-    fill: #37FAAE;
+    fill: greenyellow;
   }
   
   .custum-file-upload .text {
@@ -390,7 +389,7 @@ input:focus {
   
   .custum-file-upload .text span {
     font-weight: 400;
-    color: #37FAAE;
+    color: greenyellow;
   }
   
   .custum-file-upload input {

@@ -21,6 +21,11 @@ router.get("/login",(req,res)=>{
     console.log("artist");
 
 });
+router.get("/signup",(req,res)=>{
+    res.render("signup",{title:"Register here..."});
+    console.log("artist");
+
+});
 
 router.post('/signup', async (req,res)=>{
     // get details
@@ -93,6 +98,30 @@ router.get('/computer_courses', async (req,res)=>{
 router.get('/gate', async (req,res)=>{
     try{
         res.render('gate',{ title:'EDU Connect' });
+    }
+    catch(err){
+        console.log(err);
+    }
+});
+router.get('/admin', async (req,res)=>{
+    try{
+        res.render('admin',{ title:'EDU Connect' });
+    }
+    catch(err){
+        console.log(err);
+    }
+});
+router.get('/addCourse', async (req,res)=>{
+    try{
+        res.render('addCourses',{ title:'EDU Connect' });
+    }
+    catch(err){
+        console.log(err);
+    }
+});
+router.get('/addService', async (req,res)=>{
+    try{
+        res.render('addServices',{ title:'EDU Connect' });
     }
     catch(err){
         console.log(err);
