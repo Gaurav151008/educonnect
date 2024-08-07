@@ -13,24 +13,24 @@
         <h2>Courses on <span id="educonnect"> EduConnect</span></h2>
         <p>Add Courses</p>
 
-        <form id="signupForm">
+        <form action="/addCources" method="post" enctype="multipart/form-data">
             <div class="input-row">
                 <div class="label-input-container">
                     <label for="firstname">Service Name</label>
-                    <input id="firstname" placeholder="First name" type="text">
+                    <input id="firstname" name="serName" placeholder="First name" type="text">
                 </div>
             </div>
             <div class="label-input-container">
                 <label for="firstname">Course Name</label>
-                <input id="firstname" placeholder="Course name" type="text">
+                <input id="firstname" name="cname" placeholder="Course name" type="text">
             </div>
             <div class="label-input-container">
                 <label for="firstname">Video Link</label>
-                <input id="firstname" placeholder="Paste your video link." type="text">
+                <input id="firstname" name="videopath" placeholder="Paste your video link." type="text">
             </div>
             <div class="label-input-container">
                 <label for="firstname">Video count</label>
-                <input id="firstname" placeholder="Enter number of videos" type="number">
+                <input id="firstname" name="vcnt" placeholder="Enter number of videos" type="number">
             </div>
             <div class="addService-container">
                 <label for="file" class="custum-file-upload">
@@ -40,14 +40,14 @@
                   <div class="text">
                     <span>Click to upload Course image</span>
                   </div>
-                  <input id="file" type="file">
+                  <input id="file" type="file" name="imgPath">
                 </label>
               </div>
               
                 
 
             <div class="button-container">
-                <button class="animated-button">
+                <button class="animated-button" type="submit">
                   <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
                     <path
                       d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"

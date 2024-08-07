@@ -176,7 +176,7 @@ router.post('/addCources', async (req,res)=>{
             type: "success",
             message: "cource added successfully",
         };
-        res.redirect("/showCources");
+        res.redirect("/");
     }).catch((err)=>{
         res.json({ message: err.message });
     });
