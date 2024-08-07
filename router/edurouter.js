@@ -2,6 +2,8 @@ const express = require('express');
 const users = require("../model/user");
 const services = require('../model/services');
 const cources = require('../model/cources');
+const multer = require('multer');
+const upload = multer({ dest: 'public/images/cources/' });
 
 router = express.Router();
 
@@ -128,23 +130,23 @@ router.get('/addService', async (req,res)=>{
     }
 });
 
-router.post('/addService', async (req,res)=>{
-    
-    const service = new users({
+router.post('/addServices', upload.single('imgPath'), async (req, res) => {
+    const service = new services({
         serName: req.body.serName,
-        serImg: req.body.imgPath,
+        serImg: req.file.path, // Store the file path or handle it as needed
     });
-    
-    service.save().then(()=>{
+
+    try {
+        await service.save();
         req.session.message = {
             type: "success",
-            message: "service added successfully",
+            message: "Service added successfully",
         };
         res.redirect("/showService");
-    }).catch((err)=>{
+    } catch (err) {
         res.json({ message: err.message });
-    });
-})
+    }
+});
 
 router.get('/showService', async (req,res)=>{
     
