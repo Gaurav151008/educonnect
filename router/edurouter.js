@@ -32,7 +32,7 @@ router.get("/signup",(req,res)=>{
 router.post('/signup', async (req,res)=>{
     // get details
     const email = req.body.email;
-    const role = 0;
+    const role = 1;
     
 
     const recchk = await users.findOne({ email });
@@ -161,22 +161,22 @@ router.get('/showService', async (req,res)=>{
     
 })
 
-router.post('/addCources', async (req,res)=>{
+router.post('/addCources', upload.single('imgPath'), async (req,res)=>{
     
-    const cource = new users({
+    const cource = new cources({
         serName: req.body.serName,
         cName: req.body.cname,
-        cImg: req.body.imgPath,
-        cvideo: req.body.videopath,
-        vcnt: req.body.vcnt,
+        cImg: req.file.path,
+        cVideo: req.body.videopath,
+        cnt: req.body.vcnt,
     });
-    
+    console.log(cource.cName);
     cource.save().then(()=>{
         req.session.message = {
             type: "success",
             message: "cource added successfully",
         };
-        res.redirect("/");
+        res.redirect("/admin");
     }).catch((err)=>{
         res.json({ message: err.message });
     });
