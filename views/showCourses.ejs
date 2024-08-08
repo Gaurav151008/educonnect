@@ -1,79 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      type="png"
-      href="/public/images/icon/favicon.png"
-    />
-    <link rel="stylesheet" href="/public/css/showCourses.css" />
-    <title>Show Courses</title>
+    <title>Attractive Table</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to right, #fa4b37, #df2771);
+        padding: 0px 20px;
+      }
+      .styled-table {
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 20px;
+        overflow: hidden;
+        margin: 25px;
+        font-size: 0.9em;
+        width: 100%;
+        max-width: 800px; /* Limit maximum table width */
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      }
+      .styled-table thead tr {
+        background-color: greenyellow;
+        color: #000000;
+        text-align: left;
+      }
+      .styled-table th,
+      .styled-table td {
+        text-align: center;
+        padding: 12px 15px;
+        border: 1px solid #dddddd; /* Add border to td and th */
+      }
+      .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+      }
+      .styled-table tbody tr:nth-of-type(even) {
+        background-color: rgb(230, 255, 192);
+      }
+      .styled-table tbody tr:nth-of-type(odd) {
+        background-color: #f3f3f3;
+      }
+      .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+      }
+      .styled-table img {
+        max-height: 100px; /* Set a max height for images */
+        width: auto; /* Maintain aspect ratio */
+        display: block;
+        margin: 0 auto; /* Center align image */
+      }
+      /* From Uiverse.io by boryanakrasteva */
+      .btn {
+        background-color: transparent;
+        position: relative;
+        border: none;
+      }
+
+      .btn::after {
+        content: "delete";
+        position: absolute;
+        top: -130%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: fit-content;
+        height: fit-content;
+        background-color: rgb(168, 7, 7);
+        padding: 4px 8px;
+        border-radius: 5px;
+        transition: 0.2s linear;
+        transition-delay: 0.2s;
+        color: white;
+        text-transform: uppercase;
+        font-size: 12px;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .icon {
+        transform: scale(1.2);
+        transition: 0.2s linear;
+      }
+
+      .btn:hover > .icon {
+        transform: scale(1.5);
+      }
+
+      .btn:hover > .icon path {
+        fill: rgb(168, 7, 7);
+      }
+
+      .btn:hover::after {
+        visibility: visible;
+        opacity: 1;
+        top: -160%;
+      }
+    </style>
   </head>
   <body>
-    <div class="card">
-      <div class="image_container">
-        <img src="/public/images/courses/data-course.jpg" alt="Course Image" />
-      </div>
-      <div class="title">
-        <span>Course Name</span>
-        <button class="copy" onclick="copyLink()">
-          <span
-            data-text-end="Copied!"
-            data-text-initial="Copy to clipboard"
-            class="tooltip"
-          ></span>
-          <span>
-            <svg
-              xml:space="preserve"
-              style="enable-background: new 0 0 512 512"
-              viewBox="0 0 6.35 6.35"
-              y="0"
-              x="0"
-              height="20"
-              width="20"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              class="clipboard"
-            >
-              <g>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Images</th>
+          <th>Courses</th>
+          <th>Video Link</th>
+          <th>Video Count</th>
+          <th>Delete this course</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <img
+              src="/public/images/courses/database.jpg"
+              alt="Database Course Image"
+            />
+          </td>
+          <td>Data Structue and Algorithm</td>
+          <td><a href="www.example.com">Link of this Course</a></td>
+          <td>60</td>
+          <td>
+            <button class="btn">
+              <svg
+                viewBox="0 0 15 17.5"
+                height="17.5"
+                width="15"
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon"
+              >
                 <path
-                  fill="currentColor"
-                  d="M2.43.265c-.3 0-.548.236-.573.53h-.328a.74.74 0 0 0-.735.734v3.822a.74.74 0 0 0 .735.734H4.82a.74.74 0 0 0 .735-.734V1.529a.74.74 0 0 0-.735-.735h-.328a.58.58 0 0 0-.573-.53zm0 .529h1.49c.032 0 .049.017.049.049v.431c0 .032-.017.049-.049.049H2.43c-.032 0-.05-.017-.05-.049V.843c0-.032.018-.05.05-.05zm-.901.53h.328c.026.292.274.528.573.528h1.49a.58.58 0 0 0 .573-.529h.328a.2.2 0 0 1 .206.206v3.822a.2.2 0 0 1-.206.205H1.53a.2.2 0 0 1-.206-.205V1.529a.2.2 0 0 1 .206-.206z"
+                  transform="translate(-2.5 -1.25)"
+                  d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
+                  id="Fill"
                 ></path>
-              </g>
-            </svg>
-            <svg
-              xml:space="preserve"
-              style="enable-background: new 0 0 512 512"
-              viewBox="0 0 24 24"
-              y="0"
-              x="0"
-              height="18"
-              width="18"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              class="checkmark"
-            >
-              <g>
-                <path
-                  data-original="#000000"
-                  fill="currentColor"
-                  d="M9.707 19.121a.997.997 0 0 1-1.414 0l-5.646-5.647a1.5 1.5 0 0 1 0-2.121l.707-.707a1.5 1.5 0 0 1 2.121 0L9 14.171l9.525-9.525a1.5 1.5 0 0 1 2.121 0l.707.707a1.5 1.5 0 0 1 0 2.121z"
-                ></path>
-              </g>
-            </svg>
-          </span>
-        </button>
-      </div>
-      <div class="videos">
-        <span>No. of videos :</span>
-        <h1 class="h1-videos">8</h1>
-      </div>
-    </div>
-    <script src="/public/js/script.js"></script>
+              </svg>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>
