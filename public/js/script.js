@@ -155,6 +155,14 @@ function display(n) {
   } 
 }
 
+function copyLink() {
+  const link = 'https://example.com';
+  navigator.clipboard.writeText(link).then(function() {
+      alert('Link copied to clipboard!');
+  }, function(err) {
+      console.error('Could not copy text: ', err);
+  });
+}
 
 function sideMenu(side) {
   var menu = document.getElementById('side-menu');
