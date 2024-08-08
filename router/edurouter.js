@@ -10,8 +10,8 @@ router = express.Router();
 router.get('/', async (req,res)=>{
     try{
         const allServices = await services.find();
-        
-        res.render('home',{ title:'EDU Connect', allServices });
+        const email = req.session.email;
+        res.render('home',{ title:'EDU Connect', allServices , email });
     }
     catch(err){
         console.log(err);
@@ -64,12 +64,13 @@ router.post('/login', async (req,res)=>{
     try{
         const email = req.body.email;
         const password = req.body.password;
-        console.log(email,password);
         const user = await users.findOne({$and: [{ email }, { password }],}); // Replace with your authentication logic
 
         if (user) {
             req.session.loggedin = true;
             req.session.userId = user._id; 
+            req.session.email = user.email; 
+        
             if(user.role == 1){
                 req.session.user = "admin";
                 res.redirect('/admin');    
@@ -79,7 +80,7 @@ router.post('/login', async (req,res)=>{
                 res.redirect('/');
             }
         }else {
-            res.status(401).send('Invalid username or password');
+            res.redirect('/login');
         }
     }
     catch(error){
@@ -89,13 +90,30 @@ router.post('/login', async (req,res)=>{
 
 router.get('/computer_courses', async (req,res)=>{
     try{
+        // Fetch the list of courses from the database
+        const courceList = await cources.find(); // Ensure this returns an array
 
-        res.render('computer_courses',{ title:'EDU Connect' });
+        // Check if courceList is an array
+        if (!Array.isArray(courceList)) {
+            throw new Error('cources is not an array');
+        }
+
+        // Group courses by cName
+        const groupedCourses = courceList.reduce((acc, course) => {
+            acc[course.cName] = acc[course.cName] || [];
+            acc[course.cName].push(course);
+            return acc;
+        }, {});
+
+        res.render('computer_courses',{ groupedCourses });
     }
     catch(err){
-        console.log(err);
+        console.log('Error:', err);
+        res.status(500).send('An error occurred while fetching the courses');
     }
 });
+
+
 
 router.get('/gate', async (req,res)=>{
     try{
@@ -105,7 +123,16 @@ router.get('/gate', async (req,res)=>{
         console.log(err);
     }
 });
-router.get('/admin', async (req,res)=>{
+
+function checkAdminRole(req, res, next) {
+    if (req.session.loggedin && req.session.user === "admin") {
+        next(); // User is admin, proceed to the requested route
+    } else {
+        res.status(403).send('Access denied. You do not have permission to access this page.'); // User is not admin, deny access
+    }
+}
+
+router.get('/admin', checkAdminRole, async (req,res)=>{
     try{
         res.render('admin',{ title:'EDU Connect' });
     }
@@ -170,7 +197,6 @@ router.post('/addCources', upload.single('imgPath'), async (req,res)=>{
         cVideo: req.body.videopath,
         cnt: req.body.vcnt,
     });
-    console.log(cource.cName);
     cource.save().then(()=>{
         req.session.message = {
             type: "success",
