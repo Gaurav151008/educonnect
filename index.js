@@ -26,6 +26,7 @@ app.use((req,res,next)=>{
     res.locals.message = req.session.message;
     res.locals.loggedin = req.session.loggedin;
     res.locals.userId = req.session.userId;
+    res.locals.email = req.session.email;
     res.locals.user = req.session.user;
     delete req.session.message;
     next();

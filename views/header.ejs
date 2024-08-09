@@ -39,7 +39,12 @@
 		  onclick="slide()"
 		/>
 	  </div>
+	  <% if(!loggedin) { %>
+
 	  <a class="get-started" href="/signup">Get Started</a>
+	  <% } else { %>
+		<h3><%= email %></h3>
+		<% } %>
 	  <img
 		src="images/icon/menu.png"
 		class="menu"
