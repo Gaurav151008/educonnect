@@ -1,331 +1,103 @@
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #fa4b37, #df2771);
   margin: 0;
-  padding: 0;
+  height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  justify-content: center;
+  background: linear-gradient(to right, #fa4b37, #df2771);
+  padding: 20px; /* Add padding to prevent overflow */
+}
+.table-wrapper {
+  max-height: 100%; /* Restrict the wrapper to full viewport height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  width: 100%;
+  max-width: 800px; /* Limit maximum table width */
+}
+.styled-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 0 auto; /* Center the table horizontally */
+  font-size: 0.9em;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+  background-color: greenyellow;
+  color: #000000;
+  text-align: left;
+}
+.styled-table th,
+.styled-table td {
+  text-align: center;
+  padding: 12px 15px;
+  border: 1px solid #dddddd; /* Add border to td and th */
+}
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: rgb(230, 255, 192);
+}
+.styled-table tbody tr:nth-of-type(odd) {
+  background-color: #f3f3f3;
+}
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+.styled-table img {
+  max-height: 100px; /* Set a max height for images */
+  width: auto; /* Maintain aspect ratio */
+  display: block;
+  margin: 0 auto; /* Center align image */
+}
+.btn {
+  background-color: transparent;
+  position: relative;
+  border: none;
 }
 
-.card {
-  --bg-card: #27272a;
-  --primary: #6d28d9;
-  --primary-800: #4c1d95;
-  --primary-shadow: #2e1065;
-  --light: #d9d9d9;
-  --zinc-800: #18181b;
-  --bg-linear: linear-gradient(0deg, var(--primary) 50%, var(--light) 125%);
+.btn::after {
+  content: "delete";
+  position: absolute;
+  top: -130%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(168, 7, 7);
+  padding: 4px 8px;
+  border-radius: 5px;
+  transition: 0.2s linear;
+  transition-delay: 0.2s;
+  color: white;
+  text-transform: uppercase;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
+}
 
-  position: relative;
+.icon {
+  transform: scale(1.2);
+  transition: 0.2s linear;
+}
+
+.btn:hover > .icon {
+  transform: scale(1.5);
+}
+
+.btn:hover > .icon path {
+  fill: rgb(168, 7, 7);
+}
+
+.btn:hover::after {
+  visibility: visible;
+  opacity: 1;
+  top: -160%;
+}
+.see-course{
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 1rem;
-  width: 14rem;
-  background-color: var(--bg-card);
-  border-radius: 1rem;
 }
-
-.image_container {
-  overflow: hidden;
-  cursor: pointer;
-  position: relative;
-  z-index: 5;
-  width: 100%;
-  height: 8rem;
-  background-color: var(--primary-800);
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.image_container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 0.5rem;
-}
-
-.image_container .image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 3rem;
-  fill: var(--light);
-}
-
-.title {
-  text-align: center;
-  overflow: clip;
-  width: 100%;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--light);
-  text-transform: none;
-  text-wrap: nowrap;
-  text-overflow: ellipsis;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.size {
-  font-size: 0.75rem;
-  color: var(--light);
-}
-
-.list-size {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-
-  margin-top: 0.25rem;
-}
-
-.list-size .item-list {
-  list-style: none;
-}
-
-.list-size .item-list-button {
-  cursor: pointer;
-
-  padding: 0.5rem;
-  background-color: var(--zinc-800);
-
-  font-size: 0.75rem;
-  color: var(--light);
-
-  border: 2px solid var(--zinc-800);
-  border-radius: 0.25rem;
-
-  transition: all 0.3s ease-in-out;
-}
-
-.item-list-button:hover {
-  border: 2px solid var(--light);
-}
-.item-list-button:focus {
-  background-color: var(--primary);
-
-  border: 2px solid var(--primary-shadow);
-
-  box-shadow: inset 0px 1px 4px var(--primary-shadow);
-}
-
-.action {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.price {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--light);
-}
-
-.button {
-  position: relative;
-  width: 150px;
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  border: 1px solid #301779;
-  background-color: #382099;
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-.button,
-.button__icon,
-.button__text {
-  transition: all 0.3s;
-}
-
-.button .button__text {
-  transform: translateX(22px);
-  color: #fff;
-  font-weight: 600;
-}
-
-.button .button__icon {
-  position: absolute;
-  transform: translateX(109px);
-  height: 100%;
-  width: 39px;
-  background-color: #171979;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.button .svg {
-  width: 20px;
-  fill: #fff;
-}
-
-.button:hover {
-  background: #172779;
-}
-
-.button:hover .button__text {
-  color: transparent;
-}
-
-.button:hover .button__icon {
-  width: 148px;
-  transform: translateX(0);
-}
-
-.button:active .button__icon {
-  background-color: #146c54;
-}
-
-.button:active {
-  border: 1px solid #146c54;
-}
-
-/* Copy Link button */
-
-/* From Uiverse.io by Galahhad */ 
-/* tooltip settings 👇 */
-
-.copy {
-    /* button */
-    --button-bg: #353434;
-    --button-hover-bg: #464646;
-    --button-text-color: #CCCCCC;
-    --button-hover-text-color: #adff2f;
-    --button-border-radius: 10px;
-    --button-diameter: 36px;
-    --button-outline-width: 1px;
-    --button-outline-color: rgb(141, 141, 141);
-    /* tooltip */
-    --tooltip-bg: #f4f3f3;
-    --toolptip-border-radius: 4px;
-    --tooltip-font-family: Menlo, Roboto Mono, monospace;
-    /* 👆 this field should not be empty */
-    --tooltip-font-size: 12px;
-    /* 👆 this field should not be empty */
-    --tootip-text-color: rgb(50, 50, 50);
-    --tooltip-padding-x: 7px;
-    --tooltip-padding-y: 7px;
-    --tooltip-offset: 8px;
-    /* --tooltip-transition-duration: 0.3s; */
-    /* 👆 if you need a transition, 
-    just remove the comment,
-    but I didn't like the transition :| */
-  }
-  
-  .copy {
-    box-sizing: border-box;
-    width: var(--button-diameter);
-    height: var(--button-diameter);
-    border-radius: var(--button-border-radius);
-    background-color: var(--button-bg);
-    color: var(--button-text-color);
-    border: none;
-    cursor: pointer;
-    position: relative;
-    outline: none;
-  }
-  
-  .tooltip {
-    color: #adff2f;
-    position: absolute;
-    opacity: 0;
-    visibility: 0;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    font: var(--tooltip-font-size) var(--tooltip-font-family);
-    color: var(--tootip-text-color);
-    background: var(--tooltip-bg);
-    padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
-    border-radius: var(--toolptip-border-radius);
-    pointer-events: none;
-    transition: all var(--tooltip-transition-duration) cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-  
-  .tooltip::before {
-    content: attr(data-text-initial);
-  }
-  
-  .tooltip::after {
-    content: "";
-    position: absolute;
-    bottom: calc(var(--tooltip-padding-y) / 2 * -1);
-    width: var(--tooltip-padding-y);
-    height: var(--tooltip-padding-y);
-    background: inherit;
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
-    z-index: -999;
-    pointer-events: none;
-  }
-  
-  .copy svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .checkmark {
-    display: none;
-  }
-  
-  /* actions */
-  
-  .copy:hover .tooltip,
-  .copy:focus:not(:focus-visible) .tooltip {
-    opacity: 1;
-    visibility: visible;
-    top: calc((100% + var(--tooltip-offset)) * -1);
-  }
-  
-  .copy:focus:not(:focus-visible) .tooltip::before {
-    content: attr(data-text-end);
-  }
-  
-  .copy:focus:not(:focus-visible) .clipboard {
-    display: none;
-  }
-  
-  .copy:focus:not(:focus-visible) .checkmark {
-    display: block;
-  }
-  
-  .copy:hover,
-  .copy:focus {
-    background-color: var(--button-hover-bg);
-  }
-  
-  .copy:active {
-    outline: var(--button-outline-width) solid var(--button-outline-color);
-  }
-  
-  .copy:hover svg {
-    color: var(--button-hover-text-color);
-  }
-
-  .videos{
-    margin-top: 20px;
-    text-align: center;
-    color: var(--light);
-    font-size: 1rem;
-    font-weight: 600;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .h1-videos{
-    margin: 10px;
-    color: #adff2f;
-  }
