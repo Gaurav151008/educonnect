@@ -9,10 +9,10 @@ body {
   padding: 20px; /* Add padding to prevent overflow */
 }
 .table-wrapper {
-  max-height: 100%; /* Restrict the wrapper to full viewport height */
-  overflow-y: auto; /* Enable vertical scrolling */
-  width: 100%;
-  max-width: 800px; /* Limit maximum table width */
+  width: 100%;          /* Adjust this to your preference */
+  height: 400px;        /* Fixed height for vertical scrolling */
+  overflow-x: auto;     /* Horizontal scrolling */
+  overflow-y: auto;
 }
 .styled-table {
   border-collapse: separate;

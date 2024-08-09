@@ -165,6 +165,15 @@ router.get('/showCourse', async (req,res)=>{
     }
 });
 
+router.get('/showService', async (req,res)=>{
+    try{
+        res.render('showServices',{ title:'EDU Connect' });
+    }
+    catch(err){
+        console.log(err);
+    }
+});
+
 router.post('/addServices', upload.single('imgPath'), async (req, res) => {
     const service = new services({
         serName: req.body.serName,
